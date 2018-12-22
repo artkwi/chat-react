@@ -1,9 +1,17 @@
 import React from "react";
 
-class Chat extends React.Component{
-    
-    
-    render(){
+class Chat extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            username: '',
+            message: '',
+            messages: []
+        };
+    }
+
+    render() {
         return (
             <div className="container">
                 <div className="row">
@@ -11,17 +19,17 @@ class Chat extends React.Component{
                         <div className="card">
                             <div className="card-body">
                                 <div className="card-title">Global Chat</div>
-                                <hr/>
+                                <hr />
                                 <div className="messages">
-                                    
+
                                 </div>
-                            </div>
-                            <div className="card-footer">
-                                    <input type="text" placeholder="Username" className="form-control"/>
-                                    <br/>
-                                    <input type="text" placeholder="Message" className="form-control"/>
-                                    <br/>
+                                <div className="footer">
+                                    <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({ username: ev.target.value })} className="form-control" />
+                                    <br />
+                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} />
+                                    <br />
                                     <button className="btn btn-primary form-control">Send</button>
+                                </div>
                             </div>
                         </div>
                     </div>
