@@ -8,6 +8,7 @@ class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.logout = this.logout.bind(this);
 
         this.state = {
             username: '',
@@ -46,6 +47,12 @@ class Chat extends React.Component {
         this.setState({
             username: localStorage.getItem('username')
         })
+        // checking if user is logged in
+        if ((localStorage.getItem('username') == null) || (localStorage.getItem('username').length < 4)) {
+            this.props.history.push({
+                pathname: '/'
+            });
+        }
     }
 
     addEmoji = (e) => {
@@ -68,6 +75,13 @@ class Chat extends React.Component {
         }
     }
 
+    logout() {
+        localStorage.removeItem('username');
+        this.props.history.push({
+            pathname: '/'
+        });
+    }
+
     render() {
         return (
             <div className="container">
@@ -75,8 +89,9 @@ class Chat extends React.Component {
                     <div className="col-12 col-sm-6">
                         <div className="card text-white bg-dark mb-3">
                             <div className="card-body">
-                                <div className="card-title">Display name: {this.state.username} </div>
-                                <div className="card-title">Global Chat</div>
+                                <div className="card-header text-center">Chat</div>
+                                <div className="card-title">Your name: {this.state.username}  </div>
+                                <button onClick={this.logout} className="btn btn-outline-primary">Logout</button>
                                 <hr />
                                 <div className="messages">
                                     {this.state.messages.map(message => {
@@ -90,7 +105,7 @@ class Chat extends React.Component {
                                     <br />
                                     <Picker onSelect={this.addEmoji} />
                                     <br />
-                                    <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+                                    <button onClick={this.sendMessage} className="btn btn-primary form-control mt-3">Send</button>
                                 </div>
                             </div>
                         </div>

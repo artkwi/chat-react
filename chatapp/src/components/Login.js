@@ -1,7 +1,5 @@
 import React from "react";
-import io from "socket.io-client";
 import 'emoji-mart/css/emoji-mart.css';
-import { Picker } from 'emoji-mart';
 
 
 
@@ -32,6 +30,8 @@ class Login extends React.Component {
                     username: this.state.username
                 }
             });
+        } else {
+            alert("Minimum 4 characters required");
         }
     }
 
@@ -44,11 +44,10 @@ class Login extends React.Component {
                     <div className="col-12 col-sm-6">
                         <div className="card text-white bg-dark mb-3">
                             <div className="card-body">
-
                                 <div className="footer">
                                     <span>Provide your username:</span>
                                     <br />
-                                    <input type="text" placeholder="Username" className="form-control" value={this.state.username} onChange={this.handleChange} />
+                                    <input type="text"  minlength={4} placeholder="Username" className="form-control" value={this.state.username} onChange={this.handleChange}/>
                                     <br />
                                     <button onClick={this.confirmUsername} className="btn btn-primary form-control">Send</button>
                                 </div>
