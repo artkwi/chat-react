@@ -91,7 +91,7 @@ class Chat extends React.Component {
                             <div className="card-body">
                                 <div className="card-header text-center">Chat</div>
                                 <div className="card-title">Your name: {this.state.username}  </div>
-                                <button onClick={this.logout} class="btn btn-outline-primary">Logout</button>
+                                <button onClick={this.logout} className="btn btn-outline-primary">Logout</button>
                                 <hr />
                                 <div className="messages">
                                     {this.state.messages.map(message => {
