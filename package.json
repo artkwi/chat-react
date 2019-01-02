@@ -1,7 +1,17 @@
 {
-    "scripts": {
-        "heroku-postbuild": "cd chatapp && npm install && npm run build && cd backend && npm install",
-        "start": "node chatapp/backend/app.js"
-      },
-    "cacheDirectories": ["chatapp/backend/node_modules", "chatapp/node_modules"]
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "heroku-postbuild": "cd chatapp && npm install && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
 }
