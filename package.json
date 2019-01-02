@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "start": "node chatapp/backend/app.js"
+        "start": "node chatapp/backend/app.js",
+        "heroku-postbuild": "cd chatapp && npm install && npm run build && cd backend && npm install"
       },
     "cacheDirectories": ["chatapp/backend/node_modules", "chatapp/node_modules"]
 }
