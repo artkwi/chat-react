@@ -1,3 +1,6 @@
 {
+    "scripts": {
+        "start": "node chatapp/backend/app.js"
+      },
     "cacheDirectories": ["chatapp/backend/node_modules", "chatapp/node_modules"]
 }
