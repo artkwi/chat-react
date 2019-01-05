@@ -19,8 +19,7 @@ class Chat extends React.Component {
 
         this.socket = io('localhost:8080');
 
-        this.sendMessage = ev => {
-            ev.preventDefault();
+        this.sendMessage = () => {
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.username,
                 message: this.state.message
@@ -33,9 +32,7 @@ class Chat extends React.Component {
         });
 
         const addMessage = data => {
-            console.log(data);
             this.setState({ messages: [...this.state.messages, data] });
-            console.log(this.state.messages);
         };
     }
 
@@ -82,6 +79,12 @@ class Chat extends React.Component {
         });
     }
 
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.sendMessage();
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -94,14 +97,14 @@ class Chat extends React.Component {
                                 <button onClick={this.logout} className="btn btn-outline-primary">Logout</button>
                                 <hr />
                                 <div className="messages">
-                                    {this.state.messages.map(message => {
+                                    {this.state.messages.map((message, i) => {
                                         return (
-                                            <div>{message.author}: {message.message}</div>
+                                            <div key={i}>{message.author}: {message.message}</div>
                                         )
                                     })}
                                 </div>
                                 <div className="footer">
-                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={this.handleChange} />
+                                    <input type="text" onKeyPress={this.handleKeyPress} placeholder="Message" className="form-control" value={this.state.message} onChange={this.handleChange} />
                                     <br />
                                     <Picker onSelect={this.addEmoji} />
                                     <br />
