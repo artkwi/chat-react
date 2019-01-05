@@ -39,23 +39,25 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 col-sm-6">
-                        <div className="card text-white bg-dark mb-3">
-                            <div className="card-body">
-                                <div className="footer">
-                                    <span>Provide your username:</span>
-                                    <br />
-                                    <input type="text"  minlength={4} placeholder="Username" className="form-control" value={this.state.username} onChange={this.handleChange}/>
-                                    <br />
-                                    <button onClick={this.confirmUsername} className="btn btn-primary form-control">Send</button>
+            <form onSubmit={this.confirmUsername}> 
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-sm-6">
+                            <div className="card text-white bg-dark mb-3">
+                                <div className="card-body">
+                                    <div className="footer">
+                                        <span>Provide your username:</span>
+                                        <br />
+                                        <input type="text" minLength={4} placeholder="Username" className="form-control" value={this.state.username} onChange={this.handleChange} />
+                                        <br />
+                                        <button type="submit" className="btn btn-primary form-control">Send</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         );
     }
 }
