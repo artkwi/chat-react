@@ -52,6 +52,10 @@ class Chat extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
     addEmoji = (e) => {
         console.log(e)
         if (e.unified.length <= 5) {
@@ -85,6 +89,11 @@ class Chat extends React.Component {
         }
     }
 
+    // scroll messages always to bottom
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
     render() {
         return (
             <div className="container">
@@ -96,12 +105,15 @@ class Chat extends React.Component {
                                 <div className="card-title">Your name: {this.state.username}  </div>
                                 <button onClick={this.logout} className="btn btn-outline-primary">Logout</button>
                                 <hr />
-                                <div className="messages">
+                                <div className="messages" style={{ overflow: 'auto', height: '200px' }}>
                                     {this.state.messages.map((message, i) => {
                                         return (
                                             <div key={i}>{message.author}: {message.message}</div>
                                         )
                                     })}
+                                    <div style={{ float: "left", clear: "both" }}
+                                        ref={(el) => { this.messagesEnd = el; }}>
+                                    </div>
                                 </div>
                                 <div className="footer">
                                     <input type="text" onKeyPress={this.handleKeyPress} placeholder="Message" className="form-control" value={this.state.message} onChange={this.handleChange} />
