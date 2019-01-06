@@ -20,11 +20,13 @@ class Chat extends React.Component {
         this.socket = io('localhost:8080');
 
         this.sendMessage = () => {
-            this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
-                message: this.state.message
-            });
-            this.setState({ message: '' });
+            if (this.state.message.length > 0) {
+                this.socket.emit('SEND_MESSAGE', {
+                    author: this.state.username,
+                    message: this.state.message
+                });
+                this.setState({ message: '' });
+            }
         };
 
         this.socket.on('RECEIVE_MESSAGE', function (data) {
@@ -105,7 +107,7 @@ class Chat extends React.Component {
                                 <div className="card-title">Your name: {this.state.username}  </div>
                                 <button onClick={this.logout} className="btn btn-outline-primary">Logout</button>
                                 <hr />
-                                <div className="messages" style={{ overflow: 'auto', height: '200px' }}>
+                                <div className="messages" style={{ overflow: 'auto', height: '170px' }}>
                                     {this.state.messages.map((message, i) => {
                                         return (
                                             <div key={i}>{message.author}: {message.message}</div>
