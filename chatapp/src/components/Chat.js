@@ -100,7 +100,7 @@ class Chat extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-12 col-sm-6">
+                    <div className="col-12 col-lg-6">
                         <div className="card text-white bg-dark mb-3">
                             <div className="card-body">
                                 <div className="card-header text-center">Chat</div>
@@ -120,7 +120,7 @@ class Chat extends React.Component {
                                 <div className="footer">
                                     <input type="text" onKeyPress={this.handleKeyPress} placeholder="Message" className="form-control" value={this.state.message} onChange={this.handleChange} />
                                     <br />
-                                    <Picker onSelect={this.addEmoji} />
+                                    <Picker onSelect={this.addEmoji} set={'messenger'} style={{width:'auto;'}}/>
                                     <br />
                                     <button onClick={this.sendMessage} className="btn btn-primary form-control mt-3">Send</button>
                                 </div>
